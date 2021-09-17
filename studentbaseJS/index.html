@@ -8,30 +8,17 @@
   <script defer src="./main.js"></script>
 </head>
 <body>
-  <fieldset id="fieldset">
-    <legend>Добавить студента</legend>
-        <input id="student-fio" type="text" size="50" placeholder="Введите: Фамилию Имя Отчество" required>
-        <input id="student-bid" type="date" size="30" min="1900-01-01" value="1900-01-01">
-        <input id="student-sys" type="number" min="2000">
-        <input id="student-fac" type="text" placeholder="Факультет">
-      <button id="submit-button">Добавить студента</button>
-    </fieldset>
-    <div id="errors-field"></div>
-    <fieldset id="fieldset2">
-      <legend>Поиск по таблице</legend>
-      <input id="searchInput0" onkeyup="searchFIOTable()" size="50" type="text" placeholder="Поиск по ФИО">
-      <input id="searchInput1" onkeyup="searchFacultateTable()" type="text" placeholder="Факультет">
-      <input id="searchInput2" onkeyup="searchStartStudyTable()" type="number" placeholder="Год начала обучения" min="2000">
-      <input id="searchInput3" onkeyup="searchEndStudyTable()" type="number" placeholder="Год окончания обучения" min="2000">
-    </fieldset>
-    <table id="main-table">
-      <tr>
-        <th class="table-header">ID</th>
-        <th onclick="sortTable(1)" class="table-header">ФИО</th>
-        <th onclick="sortTable(2)" class="table-header">Факультет</th>
-        <th onclick="sortTable(3)" class="table-header">Дата рождения (возраст)</th>
-        <th onclick="sortTable(4)" class="table-header">Годы обучения</th>
-      </tr>
-    </table>
+  <div id="errors" class="errors">
+
+  </div>
+  <div id="add_student_form" class="add_student_form">
+
+  </div>
+  <div id="filter_student-form" class="filter_student-form">
+
+  </div>
+  <div id="student_table" class="student_table">
+
+  </div>
 </body>
 </html>
