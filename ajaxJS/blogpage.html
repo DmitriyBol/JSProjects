@@ -11,21 +11,17 @@
 </head>
 <body>
   <div class="container">
-    <header>
-      <div class="header_left">
-        <h2 class="header_left_title">P&PBlog</h2>
-      </div>
-      <div class="header_center">
-        <button id="prev-button"> prev </button>
-        <button id="next-button"> next </button>
-      </div>
-      <div class="header_right">
-        <button><a href="blogpost.html">to pages</a></button>
-        <h4 id='current_page'>current page = </h4>
-      </div>
-    </header>
-  </div>
-  <div id="container_blog" class="container_blog">
+    <div class="head">
+      <button id="onmainbutton">На главную</button>
+      <button id="prevbutton">Пред страница</button>
+      <button id="nextbutton">След страница</button>
+    </div>
+    <div class="info">
+      <div id="currentPage">Current page = </div>
+      <div id="currentPost"></div>
+    </div>
+    <div id="contentDiv" class="contentdiv">
+    </div>
   </div>
 </body>
 </html>

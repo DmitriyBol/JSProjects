@@ -1,64 +1,36 @@
-// eslint-disable-next-line import/extensions,import/no-cycle
-import {createPostcard, createComments, formatData} from './allData.js';
+import {updatePageId, createPostTitle, createPost, createComments} from './allData.js'
 
-// eslint-disable-next-line import/prefer-default-export
-// for page
-export function getdatafrombase(page) {
-  fetch(`https://gorest.co.in/public-api/posts?page=${page}`)
-    .then(
-      (response) => {
-        if (response.status !== 200) {
-          console.log(`Looks like there was a problem. Status Code: ${
-            response.status}`);
-          return;
-        }
-        response.json().then((data) => {
-          formatData(data);
-        });
-      },
-    )
-    .catch((err) => {
-      console.log('Fetch Error :-S', err);
-    });
+// on load (initial)
+export async function getFullPage() {
+  const data = await fetch('https://gorest.co.in/public-api/posts?page=1');
+  const response = await data.json();
+  updatePageId();
+  createPostTitle(response);
+}
+export async function getPagesCount() {
+  const data = await fetch('https://gorest.co.in/public-api/posts?page=1');
+  const response = await data.json();
+  let lastPageEx = response.meta.pagination.pages;
+  return parseInt(lastPageEx);
 }
 
-// for post and comments
-export function getpostfrombase(postid) {
-  fetch(`https://gorest.co.in/public-api/posts/${postid}`)
-    .then(
-      function(response) {
-        if (response.status !== 200) {
-          console.log('Looks like there was a problem. Status Code: ' +
-            response.status);
-          return;
-        }
-        // Examine the text in the response
-        response.json().then(function(data) {
-          createPostcard(data);
-        });
-      }
-    )
-    .catch(function(err) {
-      console.log('Fetch Error :-S', err);
-    });
+// fetch by listeners (IMPORT)
+export async function getFullPagebyNumber(n) {
+  const data = await fetch(`https://gorest.co.in/public-api/posts?page=${n}`);
+  const response = await data.json();
+  createPostTitle(response);
 }
-export function getcommentsfrombase(postid) {
-  fetch(`https://gorest.co.in/public-api/comments?post_id=${postid}`)
-    .then(
-      function(response) {
-        if (response.status !== 200) {
-          console.log('Looks like there was a problem. Status Code: ' +
-            response.status);
-          return;
-        }
 
-        // Examine the text in the response
-        response.json().then(function(data) {
-          createComments(data);
-        });
-      }
-    )
-    .catch(function(err) {
-      console.log('Fetch Error :-S', err);
-    });
+// fetch post and comments
+
+export async function getFullPost(id) {
+  const data = await fetch(`https://gorest.co.in/public-api/posts/${id}`);
+  const response = await data.json();
+  createPost(response);
+}
+
+export async function getCommentsToPost(id) {
+  const data = await fetch(`https://gorest.co.in/public-api/comments?post_id=${id}`);
+  const response = await data.json();
+  createComments(response);
 }

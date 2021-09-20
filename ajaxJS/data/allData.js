@@ -1,117 +1,129 @@
-// eslint-disable-next-line import/extensions,import/no-cycle,import/named
-import {getcommentsfrombase, getdatafrombase, getpostfrombase} from './getdata.js';
+import {getFullPage, getFullPagebyNumber, getFullPost, getPagesCount, getCommentsToPost} from "./getdata.js";
 
-// globals
-let pagesCount;
-let currentNumberPage = 1;
-const blog = document.getElementById('container_blog');
-
+let lastPage;
 if (window.location.pathname.includes('blogpage')) {
-  getdatafrombase(currentNumberPage);
+  lastPage = await getPagesCount();
+  getFullPage();
 
-  const currentPage = document.getElementById('current_page');
-  currentPage.innerHTML = `current page = ${currentNumberPage}`;
+  const onmainbutton = document.getElementById('onmainbutton');
+  const prevBtn = document.getElementById('prevbutton');
+  const nextBtn = document.getElementById('nextbutton');
 
-  const prevbutton = document.getElementById('prev-button');
-  const nextbutton = document.getElementById('next-button');
+  onmainbutton.addEventListener('click', moveonmain);
+  prevBtn.addEventListener('click', movebackward);
+  nextBtn.addEventListener('click', moveforward);
 
-  prevbutton.addEventListener('click', movebackward);
-  nextbutton.addEventListener('click', moveforward);
+  linksListen();
 } else {
-  const loadbutton = document.getElementById('postbutton');
+  const pageParams = new URLSearchParams(window.location.search);
+  let postSend = pageParams.get('post_id');
+  console.log(postSend);
+  getFullPost(postSend);
 
-  loadbutton.addEventListener('click', loadPage);
+  const onmainbutton = document.getElementById('onmainbutton');
+  onmainbutton.addEventListener('click', movetoMainpage);
 }
 
-export function formatData(data) {
-  // data['data'].length // 20
-  // data['data'][0]['body'] // текст
-  pagesCount = data.meta.pagination.pages;
-  currentNumberPage = data.meta.pagination.page;
-  for (let i = 0; i < data.data.length; i++) {
-    // eslint-disable-next-line no-use-before-define
-    createPosts(data.data[i].id);
-  }
-}
+// initial DOM
+const currentPageid = document.getElementById('currentPage');
+let currentPage = 1;
 
-// buttons events
-function movebackward() {
-  const currentPage = document.getElementById('current_page');
-  currentNumberPage--;
-  getdatafrombase(currentNumberPage);
-  currentPage.innerHTML = `current page = ${currentNumberPage} of ${pagesCount}`;
-  blog.innerHTML = '';
-}
+
+// buttons functions
 function moveforward() {
-  const currentPage = document.getElementById('current_page');
-  currentNumberPage++;
-  getdatafrombase(currentNumberPage);
-  currentPage.innerHTML = `current page = ${currentNumberPage} of ${pagesCount}`;
-  blog.innerHTML = '';
+  currentPage++;
+  updatePageId();
+  getFullPagebyNumber(currentPage);
 }
-function loadPage() {
-  blog.innerHTML = "";
-  const inputnumber = document.getElementById('numberid');
-  const postId = +inputnumber.value;
-  getpostfrombase(postId);
-  setTimeout( () => {
-    if (blog.innerHTML) {
-      getcommentsfrombase(postId);
-    }
-  } ,1000)
+function movebackward() {
+  currentPage--;
+  updatePageId();
+  getFullPagebyNumber(currentPage);
+}
+function moveonmain() {
+  currentPage = 1;
+  updatePageId();
+  getFullPage();
+}
+function movetoMainpage() {
+  window.location.href = `blogpage.html`
 }
 
-// create posts
-function createPosts(linkid) {
-    const blog = document.getElementById('container_blog');
-    const postItem = document.createElement('div');
-    postItem.classList.add('post_item');
-    const link = document.createElement('a');
-
-    const linkAdress = `https://gorest.co.in/public/v1/posts?post=${linkid}`;
-
-    link.innerHTML = linkAdress;
-    link.setAttribute('href', linkAdress);
-
-    postItem.append(link);
-    blog.append(postItem);
+export function updatePageId() {
+  if (currentPage < 1) {
+    currentPage = 1;
   }
+  if (currentPage > lastPage) {
+    currentPage = lastPage;
+  }
+  currentPageid.innerHTML = `Current page = ${currentPage} of ${lastPage}`
+}
+export function createPostTitle(data) {
+  const contentDiv = document.getElementById('contentDiv');
+  contentDiv.innerHTML = "";
 
-// create post
-export function createPostcard(data) {
-  const card = document.createElement('div');
-  const title = document.createElement('h1');
-  const cardbody = document.createElement('p');
+  for (let i = 0; i < data.data.length; i++) {
+    const itemCard = document.createElement('div');
+    itemCard.classList.add('itemCard');
+    const itemLink = document.createElement('a');
+    itemLink.innerHTML = data.data[i].title;
+    itemLink.setAttribute('postId', `${data.data[i].id}`);
+    const itemId = document.createElement('span');
+    itemId.classList.add('idCard');
+    itemId.innerHTML = `ID ${data.data[i].id}`;
 
-  card.classList.add('post_item');
+    itemCard.append(itemLink);
+    itemCard.append(itemId);
+    contentDiv.append(itemCard);
 
-  title.innerHTML = data.data.title;
-  cardbody.innerHTML = data.data.body;
+    linksListen();
+  }
+}
 
-  card.append(title);
-  card.append(cardbody);
+// listeners to links
+function linksListen() {
+  const link = document.getElementsByTagName('a');
+  const links = [...link];
+  for (let el of links) {
+    el.addEventListener('click', redirect);
+  }
+}
+function redirect() {
+  let postId = +this.getAttribute('postId');
+  window.location.href = `blogpost.html?post_id=${postId}`;
+}
 
-  blog.append(card);
+export function createPost(data) {
+  const contentDiv = document.getElementById('contentDiv');
+
+  const postCard = document.createElement('div');
+  const mainPostTitle = document.createElement('h1');
+  mainPostTitle.innerHTML = data.data.title;
+  const mainPostText = document.createElement('p');
+  mainPostText.innerHTML = data.data.body;
+
+  postCard.append(mainPostTitle);
+  postCard.append(mainPostText);
+
+  contentDiv.append(postCard);
+
+  getCommentsToPost(data.data.id);
 }
 
 export function createComments(data) {
+  const contentDiv = document.getElementById('contentDiv');
   for (let i = 0; i < data.data.length; i++) {
     const commentCard = document.createElement('div');
+    commentCard.classList.add('comment');
     const commentAuthor = document.createElement('h2');
-    const commentAuthorEmail = document.createElement('h2');
-    const commentCardBody = document.createElement('p');
-
-    commentCard.classList.add('post_comment');
-    commentAuthorEmail.classList.add('email');
+    const commentBody = document.createElement('p');
 
     commentAuthor.innerHTML = data.data[i].name;
-    commentAuthorEmail.innerHTML = data.data[i].email;
-    commentCardBody.innerHTML = data.data[i].body;
+    commentBody.innerHTML = data.data[i].body;
 
     commentCard.append(commentAuthor);
-    commentCard.append(commentAuthorEmail);
-    commentCard.append(commentCardBody);
+    commentCard.append(commentBody);
 
-    blog.append(commentCard);
+    contentDiv.append(commentCard);
   }
 }
