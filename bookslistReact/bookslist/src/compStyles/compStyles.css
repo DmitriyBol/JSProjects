@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.itemCard {
+    width: 100%;
+    margin: 5px 0;
+    height: 40px;
+    border: 2px solid teal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bookList {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputBlock {
+    width: 100%;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+}

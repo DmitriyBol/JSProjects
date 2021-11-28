@@ -1,0 +1,18 @@
+.idea
+node_modules
+
+# tests
+src/tstask/examples.ts
+src/tstask/generics.ts
+src/tstask/MappedTypes.ts
+src/components/Header/Header.jsx
+
+# jest
+src/test
+
+# examples
+src/components/examples.tsx
+src/Hooks
+src/utils
+
+secret/
