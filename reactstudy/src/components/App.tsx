@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useEffect, useRef} from "react";
 import Layout from "./Layout";
 import Header from "./Header/Header";
 import {BrowserRouter} from "react-router-dom";
 import Content from "./Content/Content";
+import InfoButton from "./Content/InfoButton";
 
 export function App() {
     return (
@@ -11,6 +12,7 @@ export function App() {
                 <Layout>
                     <Header />
                     <Content />
+                    <InfoButton />
                 </Layout>
             </BrowserRouter>
         </div>

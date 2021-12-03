@@ -53,7 +53,7 @@ const Faq = () => {
                     className='important-text'>все</span></Link> что нужно я уже рассказал, но, обычно еще просят
                     сделать мини базу или некий чеклист:</h3>
                 <div className='faq_container_books'>
-                    <p>Мини добавлялка книг:</p>
+                    <p className='faq_container_books-label'>Мини добавлялка книг:</p>
                     <input placeholder='Название' type="text" className='faq_container_books_input'
                            onChange={handleTitle}/>
                     <input placeholder='Автор' type="text" className='faq_container_books_input'
@@ -68,7 +68,7 @@ const Faq = () => {
                             return (
                                 <div key={index} className='book_element'>
                                     <div className='book_element_info'>
-                                        <p>{book.title}</p>
+                                        <p><b>{book.title}</b></p>
                                         <p>{book.author}</p>
                                     </div>
                                     <div

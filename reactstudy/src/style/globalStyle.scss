@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Smooch&display=swap');
 
 // vars
@@ -18,6 +17,17 @@ p {
 
 a {
     text-decoration: none;
+    color: black;
+}
+
+.single_link {
+    padding: 1px 3px;
+    background-color: #db2763;
+    transition: color .3s linear;
+
+    &:hover {
+        color: white;
+    }
 }
 
 .indent-20 {
@@ -42,11 +52,30 @@ a {
     }
 }
 
+.colorCard {
+    width: 120px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-text {
+        font-weight: 900;
+    }
+}
+
+.colorCard_container {
+    display: flex;
+    gap: 5px;
+}
+
+
 body {
     background-color: #9db4c0;
 }
 
 .main_layout {
+    position: relative;
     max-width: 1000px;
     height: 100%;
     margin: 0 auto;
@@ -103,6 +132,77 @@ body {
     }
 }
 
+// info button
+
+.info_button {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+    top: 150px;
+    right: -100px;
+
+    cursor: pointer;
+
+    font-weight: 900;
+    font-size: 50px;
+    color: #db2763;
+    background-color: #253237;
+
+    transition: color .3s linear, background-color .3s linear;
+    user-select: none;
+
+    z-index: 100;
+
+    &:hover {
+        color: white;
+        background-color: #db2763;
+    }
+}
+.info_button-active {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+
+    top: 150px;
+    right: -100px;
+
+    cursor: pointer;
+
+    font-weight: 900;
+    font-size: 50px;
+    color: white;
+    background-color: #db2763;
+    user-select: none;
+
+    transition: color .3s linear, background-color .3s linear;
+
+    z-index: 100;
+
+}
+.info_container {
+    position: absolute;
+    width: 700px;
+    height: 500px;
+    background-color: #fdfffc;
+    padding: 20px;
+
+    top: 150px;
+    right: -25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px black;
+
+    z-index: 1000;
+
+}
 // for Routes
 
 .active {
@@ -341,6 +441,7 @@ body {
 // faq
 
 .faq_container {
+    position: relative;
     width: 100%;
     height: 100%;
     padding: 30px 20px;
@@ -351,6 +452,7 @@ body {
 
     &_books {
         display: flex;
+        position: relative;
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
@@ -358,29 +460,68 @@ body {
         width: 100%;
         margin: 10px 0;
         padding: 20px;
+        overflow: hidden;
 
         border: 1px solid black;
 
+        &-label {
+            width: 100%;
+            position: absolute;
+            font-weight: 900;
+            opacity: 0.5;
+            font-size: 40px;
+            margin: 0;
+            top: -18px;
+            user-select: none;
+            z-index: 0;
+        }
+
         &_input {
             width: 300px;
+            height: 37px;
             padding: 5px 10px;
+            z-index: 1;
+            background-color: #fdfffc;
 
-            border: 1px solid black;
+            border: 1px solid #CACACA;
 
             &:focus {
-                background-color: #9db4c0;
+                outline: none;
+                border: 1px solid #db2763;
+                background-color: white;
             }
         }
 
         &_fileadd {
             padding: 5px 10px;
-            border: 1px solid black;
+            border: 1px solid #CACACA;
+            cursor: pointer;
+
+            &::file-selector-button {
+                border: 1px solid #CACACA;
+                background-color: transparent;
+                padding: 4px;
+            }
         }
 
         &_button {
-            width: 100%;
+            width: 95%;
+            height: 37px;
             margin: 5px 0;
             padding: 10px 20px;
+            cursor: pointer;
+
+            border-radius: 10px;
+            border: 1px solid #db2763;
+            background-color: #fdfffc;
+            transition: color .3s linear, background-color .3s linear;
+
+            font-weight: 900;
+
+            &:hover {
+                color: white;
+                background-color: #db2763;
+            }
         }
     }
 }
@@ -400,6 +541,7 @@ body {
     height: 320px;
     background-size: contain;
 
+    border-radius: 10px;
     box-shadow: 0 0 10px black;
 
     &_info {
@@ -439,7 +581,7 @@ body {
 
     &_delete_button {
         position: absolute;
-        padding: 10px;
+        padding: 5px;
         bottom: 10px;
         left: 10px;
         border: none;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { Routes, Route } from "react-router-dom";
 import Tech from "./Blogs/Tech";
 import Home from "./Blogs/Home";
