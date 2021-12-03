@@ -17,6 +17,11 @@ const Tech = () => {
                     <a className={'tech_description_link'} href="https://developer.mozilla.org/ru/">developer.mozilla.org</a> {' '}
                     и команд разработчиков на <a target={'_blank'} className={'tech_description_link'} href="https://github.com/">github.com</a> .
                 </p>
+                <p>На конец 2021 года активно изучаю технологии backend такие как, <span className={'tech_description_important'}>Java</span>{' '},{' '}
+                    <span className={'tech_description_important'}>NodeJS</span>{' '},{' '}
+                    <span className={'tech_description_important'}>ExpressJS</span>{' '},{' '}
+                    <span className={'tech_description_important'}>NextJS</span>{' '},{' '}
+                    <span className={'tech_description_important'}>RestJS</span></p>
                 <p>Пока нет мыслей чем продолжить, но если буду релизить - то обязательно напишу больше строк и ресурсов.</p>
             </div>
 
@@ -40,6 +45,7 @@ const Tech = () => {
                 <TechItem type={TechTitleEnum.reactRoute} active={true}/>
                 <TechItem type={TechTitleEnum.redux} active={false}/>
                 <TechItem type={TechTitleEnum.webpack} active={true}/>
+                <TechItem type={TechTitleEnum.docker} active={false} notUsed={true}/>
                 <TechItem type={TechTitleEnum.reactNative} active={false} notUsed={true}/>
                 <TechItem type={TechTitleEnum.prettier} active={true}/>
                 <TechItem type={TechTitleEnum.mobx} active={false} notUsed={true}/>

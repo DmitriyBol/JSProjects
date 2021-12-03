@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Smooch&display=swap');
 
 // vars
 
@@ -13,6 +14,32 @@
 
 p {
     margin: 10px 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.indent-20 {
+    text-indent: 20px;
+}
+
+.important-text {
+    color: white;
+    background-color: #db2763;
+    padding: 1px 3px;
+
+    transition: color .3s linear;
+
+    &-less {
+        color: white;
+        background-color: coral;
+        padding: 1px 3px;
+    }
+
+    &:hover {
+        color: black;
+    }
 }
 
 body {
@@ -109,6 +136,63 @@ body {
     overflow: hidden;
 }
 
+// home
+
+.home_container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 30px 20px;
+    overflow: hidden;
+    z-index: 5;
+
+    &-text {
+        margin: 10px 20px;
+    }
+
+    &-greetings {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        user-select: none;
+        opacity: .4;
+
+        &-curvie {
+            margin: 0 10px;
+            font-size: 65px;
+            font-family: 'Smooch', cursive;
+        }
+    }
+
+    &-list {
+        border-left: 5px solid #db2763;
+        list-style: none;
+        padding-left: 10px;
+
+        & > li {
+            margin: 5px 0;
+        }
+    }
+
+    &-addinfo {
+        border-left: 5px solid coral;
+        list-style: none;
+        padding-left: 10px;
+
+        & > li {
+            margin: 5px 0;
+        }
+    }
+}
+.home-footer-img {
+    position: absolute;
+    top: 70%;
+    left: -50px;
+    opacity: .2;
+    z-index: -1;
+}
+
 // tech
 
 .tech_contaiter {
@@ -117,7 +201,6 @@ body {
     width: 100%;
     height: 100%;
 }
-
 .tech_description {
     padding: 30px 20px;
     height: 72%;
@@ -151,7 +234,6 @@ body {
         }
     }
 }
-
 .tech_legend {
     height: 70px;
     display: flex;
@@ -186,7 +268,6 @@ body {
         outline: 1px solid #db2763;
     }
 }
-
 .tech_used_container {
     width: 100%;
     height: 28%;
@@ -198,7 +279,6 @@ body {
     flex-wrap: wrap;
     gap: 20px;
 }
-
 .tech_used_item {
     display: flex;
     justify-content: center;
@@ -257,3 +337,193 @@ body {
     }
 }
 
+
+// faq
+
+.faq_container {
+    width: 100%;
+    height: 100%;
+    padding: 30px 20px;
+
+    &_title {
+        text-align: center;
+    }
+
+    &_books {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 5px;
+        width: 100%;
+        margin: 10px 0;
+        padding: 20px;
+
+        border: 1px solid black;
+
+        &_input {
+            width: 300px;
+            padding: 5px 10px;
+
+            border: 1px solid black;
+
+            &:focus {
+                background-color: #9db4c0;
+            }
+        }
+
+        &_fileadd {
+            padding: 5px 10px;
+            border: 1px solid black;
+        }
+
+        &_button {
+            width: 100%;
+            margin: 5px 0;
+            padding: 10px 20px;
+        }
+    }
+}
+
+.books_container {
+    display: flex;
+    flex-flow: wrap;
+    gap: 10px;
+}
+
+.book_element {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24%;
+    height: 320px;
+    background-size: contain;
+
+    box-shadow: 0 0 10px black;
+
+    &_info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        height: 20%;
+        background-color: #fdfffc;
+        font-size: 14px;
+        z-index: 10;
+
+        & > p {
+            margin: 0;
+            text-align: center;
+        }
+    }
+
+    &_like_button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 5px;
+        background-color: white;
+        font-weight: 900;
+        cursor: pointer;
+        z-index: 10;
+
+        border-radius: 5px;
+        transition: background-color .3s linear;
+
+        &:hover {
+            background-color: #db2763;
+        }
+    }
+
+    &_delete_button {
+        position: absolute;
+        padding: 10px;
+        bottom: 10px;
+        left: 10px;
+        border: none;
+        background-color: white;
+        font-weight: 900;
+        cursor: pointer;
+        z-index: 10;
+
+        border-radius: 5px;
+        transition: background-color .3s linear;
+
+        &:hover {
+            background-color: #db2763;
+        }
+    }
+
+    &_like_button-liked {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 5px;
+        font-weight: 900;
+        cursor: pointer;
+        color: #db2763;
+        background-color: white;
+        z-index: 10;
+
+        border-radius: 5px;
+        transition: background-color .3s linear;
+
+        &:hover {
+            background-color: white;
+        }
+    }
+
+    & > img {
+        position: absolute;
+    }
+}
+
+// contacts
+
+.contacts_wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-card {
+        display: flex;
+        justify-content: space-between;
+        width: 600px;
+        height: 300px;
+        padding: 20px;
+        border-radius: 15px;
+        background-color: #253237;
+
+        box-shadow: 0 5px 10px black;
+
+        &-text {
+            width: 70%;
+
+
+        }
+        &-logo {
+            width: 35%;
+            padding-left: 20px;
+            border-left: 2px solid #db2763;
+        }
+    }
+}
+$gradients: () !default;
+$gradients: map-merge((
+        hot: linear-gradient(135deg, #FFEE88 0%,#db2763 100%),
+), $gradients);
+@mixin text-gradient($parent, $gradient) {
+    #{$parent} {
+        background-image: $gradient;
+        color:transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+    }
+}
+@each $gradient, $value in $gradients {
+    @include text-gradient(".text-gradient-#{$gradient}", $value);
+}

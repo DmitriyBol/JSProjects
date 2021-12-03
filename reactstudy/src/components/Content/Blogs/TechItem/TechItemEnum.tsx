@@ -20,6 +20,7 @@ export enum TechTitleEnum {
     sql = 'SQL',
     nodejs = 'NODEJS',
     express = 'EXPRESSJS',
+    docker = 'DOCKER',
 }
 
 export default TechTitleEnum;

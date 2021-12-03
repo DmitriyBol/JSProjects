@@ -36,13 +36,18 @@ module.exports = {
           ],
         }
       }
-    }
+    },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        loader: 'file-loader',
+      }
     ]
   },
   plugins: [
       new HTMLWebpackPlugin({template: path.resolve(__dirname, 'index.html')})
   ],
   devServer: {
+    host: '127.0.0.1',
     port: 5000,
     open: true,
     hot: IS_DEV,
