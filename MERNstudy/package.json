@@ -1,0 +1,21 @@
+{
+  "name": "mernstudy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "author": "Dmitriy Bolshaskov <patrik.pjemslav@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^6.1.2"
+  },
+  "devDependencies": {
+    "concurrently": "^6.4.0",
+    "config": "^3.3.6",
+    "nodemon": "^2.0.15"
+  }
+}
