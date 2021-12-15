@@ -1,5 +1,4 @@
 /node_modules
 
-/secrets
-
-/config
+/config/
+config/default.json
