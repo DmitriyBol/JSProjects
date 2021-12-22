@@ -16,20 +16,28 @@ router.post(
         try {
             const errors = validationResult(request);
             if (!errors.isEmpty()) {
-                return response.status(400).json({Errors: [errors], message: 'incorrect DATA'})
+                return response.status(400).json({Errors: [errors], message: 'incorrect data coming on server side!'})
             }
 
-            const {email, password} = request.body
-            const NewUser = await User.findOne({email}).then((res) => {
-                return res.status(400).json({message: 'User is already registred!'})
-            });
+            const {email, password} = request.body;
+
+            const user = await User.findOne({email});
+            if (user) {
+                return response.status(400).json({message: 'User is already registred!'});
+            }
+
+            const allData = await User.find();
+            console.log(allData)
+
             const hashedPassword = await bcrypt.hash(password, 12);
             const createUser = new User({email: email, password: hashedPassword});
+
             await createUser.save();
+
             response.status(201).json({message: `Created new user with email ${email}`})
 
         } catch (e) {
-            response.status(500).json({message: 'smth wrong!'})
+            response.status(500).json({message: 'smth wrong on server side!'})
         }
     });
 
