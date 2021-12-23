@@ -32,28 +32,32 @@ const AuthPage = () => {
                 margin: '0 auto',
                 padding: '20px',
                 backgroundColor: 'lightgray',
+                borderRadius: '10px',
+                display: 'flex',
+                flexDirection: 'column'
             }}>
-                <h1>Auth page is loaded!</h1>
-                <h2 style={{textAlight: 'center'}}>Авторизация</h2>
-                <div style={{margin: '10px 0'}}>
-                    <label style={{margin: '0 10px 0 0'}} htmlFor='email'>Email</label>
+                <h2 style={{ textAlign: 'center' }}>Авторизация</h2>
+                <div style={{margin: '10px 0', display: 'flex', justifyContent: 'space-between'}}>
+                    <label style={{margin: '0 10px 0 0', display: 'flex', alignItems: 'center', justifyContent: 'center'}} htmlFor='email'>Email</label>
                     <input placeholder='insert email'
                            id='email'
                            type="text"
                            name='email'
                            onChange={changeHandler}
+                           style={{padding: '10px'}}
                     />
                 </div>
-                <div style={{margin: '10px 0'}}>
-                    <label style={{margin: '0 10px 0 0'}} htmlFor='password'>Email</label>
+                <div style={{margin: '10px 0', display: 'flex', justifyContent: 'space-between'}}>
+                    <label style={{margin: '0 10px 0 0', display: 'flex', alignItems: 'center', justifyContent: 'center'}} htmlFor='password'>Password</label>
                     <input placeholder='insert password'
                            id='password'
                            type="password"
                            name='password'
                            onChange={changeHandler}
+                           style={{padding: '10px'}}
                     />
                 </div>
-                <div style={{display: 'flex', justifyContent: 'space-evenly'}}>
+                <div style={{display: 'flex', justifyContent: 'space-evenly', marginTop: 'auto'}}>
                     <button
                         style={{width: '100px', padding: '10px', cursor: 'pointer'}}
                         disabled={loading}

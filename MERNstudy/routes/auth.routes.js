@@ -1,10 +1,15 @@
-const {Router, request} = require('express');
+const {Router} = require('express');
 const User = require('../models/User')
 const bcrypt = require('bcryptjs');
 const config = require('config');
 const {check, validationResult} = require('express-validator')
 const router = Router();
 const jwt = require('jsonwebtoken');
+
+const fs = require('fs');
+
+router.post('/wipemongobase'); //check auth
+router.post('/writemongobase'); //check auth
 
 router.post(
     '/register',
@@ -26,13 +31,19 @@ router.post(
                 return response.status(400).json({message: 'User is already registred!'});
             }
 
-            const allData = await User.find();
-            console.log(allData)
-
             const hashedPassword = await bcrypt.hash(password, 12);
             const createUser = new User({email: email, password: hashedPassword});
 
             await createUser.save();
+
+            // получаем данные по юзерам и записываем к себе на локал
+            const usersDataFromMongo = await User.find();
+            const jsonData = JSON.stringify(usersDataFromMongo);
+            fs.writeFile('./UserDB/users.data.json', jsonData, function(err) {
+                if(err) return console.error(err);
+                console.log('Users has been rewrited...');
+            })
+            //
 
             response.status(201).json({message: `Created new user with email ${email}`})
 
@@ -65,7 +76,7 @@ router.post(
             }
 
             const token = jwt.sign(
-                { userID: user.id },
+                {userID: user.id},
                 config.get('jwtSecret'),
                 {expireIn: '1h'},
             )
