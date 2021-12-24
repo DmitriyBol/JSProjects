@@ -1,0 +1,60 @@
+.main_container {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: lightgray;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+
+  &-title {
+    text-align: center;
+  }
+
+  &-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: auto;
+
+    & > button {
+      width: 100px;
+      padding: 10px;
+      cursor: pointer;
+    }
+  }
+
+  &-input_row {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+
+    &-label {
+      margin: 0 10px 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &-input {
+      padding: 10px;
+    }
+  }
+}
+
+.all_email_data {
+  margin: 10px auto;
+  width: 300px;
+
+  &-button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+  }
+
+  & > div {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #CACACA;
+  }
+}

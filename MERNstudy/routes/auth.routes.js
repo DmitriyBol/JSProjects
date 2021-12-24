@@ -1,4 +1,4 @@
-const {Router} = require('express');
+const {Router, request, response} = require('express');
 const User = require('../models/User')
 const bcrypt = require('bcryptjs');
 const config = require('config');
@@ -9,7 +9,23 @@ const jwt = require('jsonwebtoken');
 const fs = require('fs');
 
 router.post('/wipemongobase'); //check auth
-router.post('/writemongobase'); //check auth
+
+router.get('/getallusers', async (request, response) => {
+    try {
+        const resultArray = [];
+        const usersDataFromMongo = await User.find();
+        if (usersDataFromMongo) {
+            usersDataFromMongo.map((element, index) => {
+                resultArray.push(element.email);
+            })
+            response.status(201).json({data: resultArray, message: 'all ok!'})
+            return resultArray;
+        }
+    } catch (e) {
+        console.log('Error', e)
+    }
+
+}); //check auth
 
 router.post(
     '/register',
@@ -39,9 +55,8 @@ router.post(
             // получаем данные по юзерам и записываем к себе на локал
             const usersDataFromMongo = await User.find();
             const jsonData = JSON.stringify(usersDataFromMongo);
-            fs.writeFile('./UserDB/users.data.json', jsonData, function(err) {
-                if(err) return console.error(err);
-                console.log('Users has been rewrited...');
+            fs.writeFile('./UserDB/users.data.json', jsonData, function (err) {
+                if (err) return console.error(err);
             })
             //
 
@@ -66,11 +81,13 @@ router.post(
             }
 
             const {email, password} = request.body;
-            const user = await User.findOne({email}).then((res) => {
-                return res.status(400).json({message: 'User not found'});
-            })
 
-            const isPasswordMatch = await bcrypt.compare(password, user.password)
+            const user = await User.findOne({email});
+            if (!user) {
+                return response.status(400).json({message: 'User not found'});
+            }
+
+            const isPasswordMatch = await bcrypt.compare(password, user.password);
             if (!isPasswordMatch) {
                 return response.status(400).json({message: 'incorrect input'})
             }
@@ -78,10 +95,9 @@ router.post(
             const token = jwt.sign(
                 {userID: user.id},
                 config.get('jwtSecret'),
-                {expireIn: '1h'},
-            )
-
-            response.status(200).json({token, userID: user.id})
+                // {expireIn: '1h'},
+            );
+            response.status(201).json({token, userID: user.id})
 
         } catch (e) {
             response.status(500).json({message: 'smth wrong with LOGIN!'})

@@ -3,6 +3,7 @@ import {useHttp} from "../hooks/http.hook";
 
 const AuthPage = () => {
     const {loading, error, request, clearError} = useHttp();
+    const [gettedData, setGettedData] = useState();
     const [form, setForm] = useState({
         email: '',
         password: '',
@@ -23,55 +24,77 @@ const AuthPage = () => {
             throw e;
         }
     }
+    const loginHandler = async () => {
+        try {
+            await request('/api/auth/login', 'POST', {...form})
+        } catch (e) {
+            throw e;
+        }
+    }
+    const dataRecieveHandler = async () => {
+        try {
+            await fetch('/api/auth/getallusers').then(async (res) => {
+                const data = await res.json();
+                setGettedData(data.data);
+            })
+        } catch (e) {
+            throw e;
+        }
+    }
 
     return (
         <>
-            <div style={{
-                width: '300px',
-                height: '300px',
-                margin: '0 auto',
-                padding: '20px',
-                backgroundColor: 'lightgray',
-                borderRadius: '10px',
-                display: 'flex',
-                flexDirection: 'column'
-            }}>
-                <h2 style={{ textAlign: 'center' }}>Авторизация</h2>
-                <div style={{margin: '10px 0', display: 'flex', justifyContent: 'space-between'}}>
-                    <label style={{margin: '0 10px 0 0', display: 'flex', alignItems: 'center', justifyContent: 'center'}} htmlFor='email'>Email</label>
-                    <input placeholder='insert email'
+            <div
+                className='main_container'
+            >
+                <h2 className='main_container-title'>Авторизация</h2>
+                <div className='main_container-input_row'>
+                    <label className='main_container-input_row-label' htmlFor='email'>Email</label>
+                    <input className='main_container-input_row-input' placeholder='insert email'
                            id='email'
                            type="text"
                            name='email'
                            onChange={changeHandler}
-                           style={{padding: '10px'}}
                     />
                 </div>
-                <div style={{margin: '10px 0', display: 'flex', justifyContent: 'space-between'}}>
-                    <label style={{margin: '0 10px 0 0', display: 'flex', alignItems: 'center', justifyContent: 'center'}} htmlFor='password'>Password</label>
-                    <input placeholder='insert password'
+                <div className='main_container-input_row'>
+                    <label className='main_container-input_row-label' htmlFor='password'>Password</label>
+                    <input className='main_container-input_row-input'
+                           placeholder='insert password'
                            id='password'
                            type="password"
                            name='password'
                            onChange={changeHandler}
-                           style={{padding: '10px'}}
                     />
                 </div>
-                <div style={{display: 'flex', justifyContent: 'space-evenly', marginTop: 'auto'}}>
+                <div className='main_container-buttons'>
                     <button
-                        style={{width: '100px', padding: '10px', cursor: 'pointer'}}
+                        onClick={loginHandler}
                         disabled={loading}
                     > Войти
                     </button>
                     <button
-                        style={{width: '100px', padding: '10px', cursor: 'pointer'}}
                         onClick={registerHandler}
                         disabled={loading}
                     > Регистрация
                     </button>
                 </div>
+                <button
+                    className='all_email_data-button'
+                    onClick={dataRecieveHandler}
+                    disabled={loading}
+                >Получить список Email's
+                </button>
             </div>
-
+            <div className='all_email_data'>
+                <span>Какие email's есть в базе</span>
+                {gettedData &&
+                gettedData.map((element, index) => {
+                    return (
+                        <div key={index}>{element}</div>
+                    )
+                })}
+            </div>
         </>
     )
 }
