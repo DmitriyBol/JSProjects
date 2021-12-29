@@ -1,16 +1,30 @@
-import React from "react";
+import React, {createContext} from "react";
 import {BrowserRouter} from 'react-router-dom'
 import useRoutes from './routes'
 import '../src/styles/styles.css'
+import useAuth from "./hooks/auth.hook";
+
+export const AuthContext = createContext({
+    token: null,
+    userId: null,
+    login: () => {},
+    logout: () => {},
+    isAuth: false,
+})
 
 const App = () => {
-    const routes = useRoutes(false);
+    const {token, login, logout, userId} = useAuth();
+    const isAuth = !!token;
+    const routes = useRoutes(isAuth);
+
     return (
-        <BrowserRouter>
-            <div>
-                {routes}
-            </div>
-        </BrowserRouter>
+        <AuthContext.Provider value={{token, login, logout, userId, isAuth}}>
+            <BrowserRouter>
+                <div>
+                    {routes}
+                </div>
+            </BrowserRouter>
+        </AuthContext.Provider>
     );
 }
 

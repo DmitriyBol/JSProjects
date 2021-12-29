@@ -42,6 +42,8 @@ router.post(
 
             const {email, password} = request.body;
 
+            console.log('request.body', request.body)
+
             const user = await User.findOne({email});
             if (user) {
                 return response.status(400).json({message: 'User is already registred!'});

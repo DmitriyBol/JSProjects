@@ -1,5 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {useHttp} from "../hooks/http.hook";
+import {AuthContext} from '../App'
 
 const AuthPage = () => {
     const {loading, error, request, clearError} = useHttp();
@@ -8,6 +9,7 @@ const AuthPage = () => {
         email: '',
         password: '',
     });
+    const authPageContext = useContext(AuthContext);
 
     useEffect(() => {
         clearError();
@@ -26,7 +28,10 @@ const AuthPage = () => {
     }
     const loginHandler = async () => {
         try {
-            await request('/api/auth/login', 'POST', {...form})
+            await fetch('/api/auth/login', {method: "POST", headers: {'Content-Type': 'application/json'} , body: JSON.stringify(form)}).then( async (res) => {
+                const data = await res.json();
+                authPageContext.login(data.token, data.userID)
+            })
         } catch (e) {
             throw e;
         }
