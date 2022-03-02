@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 const CustomTextForm = (props) => {
     const [currentValue, setCurrentValue] = useState('');
@@ -9,7 +9,7 @@ const CustomTextForm = (props) => {
         } else {
             props.setTextAreaEmpty(true);
         }
-    }, [currentValue])
+    })
 
     const changeHandler = (e) => {
         setCurrentValue(e.target.value);

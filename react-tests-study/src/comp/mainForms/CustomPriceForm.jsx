@@ -9,7 +9,7 @@ const CustomPriceForm = (props) => {
         } else {
             props.setPriceAreaEmpty(true);
         }
-    }, [currentPrice])
+    })
 
     const changeHandler = (e) => {
         setPrice(e.target.value);
@@ -18,7 +18,7 @@ const CustomPriceForm = (props) => {
 
     return (
         <>
-            <input className='main-input' type="number" placeholder={'price'} value={currentPrice} onChange={changeHandler}/>
+            <input className='price-input' type="number" placeholder={'price'} value={currentPrice} onChange={changeHandler}/>
         </>
     )
 }

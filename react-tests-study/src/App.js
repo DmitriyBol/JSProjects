@@ -15,6 +15,12 @@ const App = () => {
     // mock data
     const [DB, setDB] = useState([]);
 
+    useEffect(() => {
+        if (DB.length > 3) {
+            setDB([])
+        }
+    }, [DB]);
+
     // handlers
     const getTextValue = (val) => {
         setReceivedTextData(val);
@@ -63,18 +69,23 @@ const App = () => {
                     getPriceValue={getPriceValue}
                 />
                 {/* appears then text && price is NOT empty */}
-                { receivedTextData && receivedPriceData && (
+                {receivedTextData && receivedPriceData && (
                     <button className='main-button_big' onClick={addToDB}>Send data</button>
                 )}
                 <ul>
-                {DB && (
-                    DB.map((el, index) => {
-                        return (
-                            <li aria-label="listitem" className='list-item' key={index}>Расход: {el.value}, а что ты сказал на это - " {el.comment} "</li>
-                        )
-                    })
-                )}
+                    {DB && (
+                        DB.map((el, index) => {
+                            return (
+                                <li aria-label="listitem" className='list-item' key={index}>Расход: {el.value}, а что ты
+                                    сказал на это - " {el.comment} "</li>
+                            )
+                        })
+                    )}
                 </ul>
+                <span className='description'>
+                    Данная демка создана с целью показать возможности тестов используя интрументы react-testing-library,
+                    тут не будет много кода, а может и сама форма выглядит не совсем приятно, ведь вся магия происходит "под копотом"
+                </span>
             </div>
         </>
     )
