@@ -1,0 +1,57 @@
+//vars
+$maxW: 500px;
+
+//
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-cont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  width: 600px;
+  height: 400px;
+  padding: 20px;
+  border: 1px solid #c9c9c9;
+}
+
+.main-button {
+  width: $maxW;
+  margin: 5px 0;
+  cursor: pointer;
+
+  &_big {
+    width: $maxW;
+    height: 50px;
+    margin: 10px 0;
+    cursor: pointer;
+  }
+}
+
+.main-input {
+  width: $maxW;
+  margin: 5px 0;
+}
+
+.list-item {
+  width: $maxW;
+  display: flex;
+  padding: 5px;
+  margin: 5px 0;
+  border: 1px solid green;
+}
+
+.main-textarea {
+  width: 300px;
+  max-width: $maxW;
+  min-width: 500px;
+  height: 100px;
+  min-height: 20px;
+  max-height: 100px;
+  margin: 10px 0;
+  border: 1px solid #c9c9c9;
+}
