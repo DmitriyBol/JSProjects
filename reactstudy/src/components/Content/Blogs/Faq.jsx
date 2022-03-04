@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import StartBookImage from '../../../../static/books/lord-of-the-rings.jpg'
 
 const Faq = () => {
     const LSTORAGE = window.localStorage;
