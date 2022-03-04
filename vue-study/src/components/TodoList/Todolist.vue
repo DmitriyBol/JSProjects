@@ -10,6 +10,9 @@
           @remove="remove"
       />
     </ul>
+    <div class="no-todos" v-if="changeHandler">
+      {{ changeHandler }}
+    </div>
   </div>
 </template>
 
@@ -41,6 +44,11 @@ export default {
       this.todoArray = this.todoArray.filter((item) => item.id !== idItem);
       console.log('removed... ID ', idItem)
     }
+  },
+  computed: {
+    changeHandler() {
+      return this.todoArray.length > 0 ? '' : 'нет дел';
+    }
   }
 }
 </script>
@@ -49,6 +57,13 @@ export default {
 .todo-input {
   margin: 0 10px;
   padding: 5px;
+}
+
+.no-todos {
+  margin: 5px auto;
+  width: 860px;
+  border: 1px solid red;
+  font-size: 30px;
 }
 
 .todo-list {
