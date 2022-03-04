@@ -1,70 +1,35 @@
-# Getting Started with Create React App
+# Content list
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. **Express-study** - attempt work w/ `express и middleware`.
+2. **Mern-study** - attempt work in stack `MongoDB Express React NodeJS`.
+3. **React-booklist** - test task, succeeded.
+4. **React-redux-study** - main principles of `React + Redux`.
+5. **React-study** - small project, displays current stack `React, Webpack, TS, Sass`.
+6. **React-tests-study** - main principles of unit test using `React-testing-library`.
+7. **Vue-study** - on FEB.2022 learn `Vue`.
+8. **React-Redux-Ts** - small project, shows work `React + Redux` w/ strict types `TypeScript`. Test included
 
-## Available Scripts
+## Want more tasks? Contact me:
 
-In the project directory, you can run:
+### `patrik.pjemslav@gmail.com`
 
-### `npm start`
+### `telegram @Dmtbo`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Краткий экскурс
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. **Express-study** - проба пера работы с `express и middleware`.
+2. **Mern-study** - проба пера работы в стеке `MongoDB Express React NodeJS`.
+3. **React-booklist** - одно из старых тестовых, успешное.
+4. **React-redux-study** - показан принцип работы `React + Redux`.
+5. **React-study** - мелкий проект, показывающий работу современного стека `React, Webpack, TS, Sass`.
+6. **React-tests-study** - проказан принцип юнит тестирования кода с помощью `React-testing-library`.
+7. **Vue-study** - на момент FEB.2022 в свободное время разбираюсь с `Vue`.
+8. **React-Redux-Ts** - мелкий проект, показывающий работу `React + Redux` с строгой типизацией `TypeScript`. Тесты
+   включены
 
-### `npm test`
+## Если нужны больше примеров - пишите:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `patrik.pjemslav@gmail.com`
 
-### `npm run build`
+### `telegram @Dmtbo`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
