@@ -1,0 +1,47 @@
+* {
+  box-sizing: border-box;
+
+  font-size: 16px;
+}
+
+button {
+  width: 100%;
+  margin: 5px 0;
+}
+
+.main-section {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-flow: row;
+}
+
+.data-card {
+  width: 350px;
+  min-height: 500px;
+  padding: 20px;
+  border: 1px solid #c9c9c9;
+  border-radius: 2%;
+}
+
+.one-to-two {
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid black;
+}
+
+.card {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid black;
+  margin: 2px 0;
+  text-align: center;
+}
+
+.prop-list {
+  display: flex;
+  flex-direction: column;
+}
