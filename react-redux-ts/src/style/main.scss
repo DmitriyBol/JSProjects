@@ -50,3 +50,59 @@
     }
   }
 }
+
+.main-content {
+  display: flex;
+  justify-content: space-between;
+
+  &_left-cont {
+    width: 80%;
+    padding: 20px;
+    border-top: 1px solid black;
+
+    &_list {
+      display: flex;
+      gap: 15px;
+      flex-direction: row;
+      flex-flow: row;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      &_item {
+        width: 150px;
+        height: 210px;
+        border: 1px solid black;
+        display: flex;
+        flex-direction: column;
+
+        cursor: pointer;
+        transition: transform .25s ease-in-out;
+
+        &:hover {
+          transform: scale(1.05);
+        }
+
+        &_image {
+          height: 70%;
+          border-bottom: 1px solid black;
+        }
+
+        &_info {
+          display: flex;
+          margin: 10px auto;
+          flex-direction: column;
+          font-size: 14px;
+          user-select: none;
+        }
+      }
+    }
+  }
+
+  &_right-cont {
+    width: 19%;
+    height: 400px;
+    padding: 20px;
+    border: 1px solid black;
+  }
+}

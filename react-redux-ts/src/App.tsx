@@ -1,45 +1,25 @@
-import React, {ChangeEvent, SyntheticEvent, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './style/main.scss'
+import HeaderMain from "./comp/header/HeaderMain";
+import ItemsList from "./comp/content/leftside/ItemsList";
+import MockDB from "./mockDB/MockDB";
 
 function App() {
-    const [isSelected, setSelected] = useState('Главная');
+    const [datafromDB, setDataFromDB]: any = useState();
 
-    const setSelectedMenu = (e: any): void => {
-        setSelected(e.target.innerHTML)
-    }
+    useEffect(() => {
+        setDataFromDB(MockDB);
+    }, [])
 
     return (
         <div className='main-container'>
-            <header className='header-main'>
-                <nav>
-                    <ul className='nav-list'>
-                        <li className='nav-list_item'>
-                            <a
-                            style={isSelected === 'Главная' ? {backgroundColor: '#6acbff'} : {}}
-                            href="#"
-                            onClick={setSelectedMenu}>Главная
-                            </a>
-                        </li>
-                        <li className='nav-list_item'>
-                            <a
-                                style={isSelected === 'Магазин' ? {backgroundColor: '#6acbff'} : {}}
-                                href="#"
-                                onClick={setSelectedMenu}
-                            >Магазин</a>
-                        </li>
-                        <li className='nav-list_item'>
-                            <a
-                                style={isSelected === 'Контакты' ? {backgroundColor: '#6acbff'} : {}}
-                                href="#"
-                                onClick={setSelectedMenu}
-                            >Контакты
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </header>
-            <section className='left-cont'> Основное поле с товарами и картинками</section>
-            <section className='right-cont'> Меню, фильтры</section>
+            <HeaderMain/>
+            <section className='main-content'>
+                <section className='main-content_left-cont'>
+                    <ItemsList data={datafromDB} />
+                </section>
+                <section className='main-content_right-cont'> Меню, фильтры</section>
+            </section>
             <footer>
                 дополнительная инфа
             </footer>
